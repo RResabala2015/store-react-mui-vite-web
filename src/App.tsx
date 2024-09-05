@@ -1,27 +1,20 @@
-import * as React from 'react';
-import { AuthContext } from './app/views/store/contexts/AuthContext';
-import { AuthReducer } from './app/views/store/reducers/AuthReducer';
-import { AppRouter } from './app/router/AppRouter';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 
-const init = () => {
-  let sessionUser: any = sessionStorage.getItem("user");
-  let user: any;
-  if(!sessionUser){
-   user = sessionUser;
-  }
-   else{
-    user = JSON.parse(sessionUser);
-   }
-  return user; 
+export function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
 }
 
-export default function App() {
-
-  const [user, dispatchUser ] = React.useReducer(AuthReducer, {}, init);
-  
+export function WrappedApp() {
   return (
-    <AuthContext.Provider value={{user, dispatchUser}}>
-      <AppRouter />
-    </AuthContext.Provider>  
+    <HashRouter>
+      <App />
+    </HashRouter>
   );
 }
