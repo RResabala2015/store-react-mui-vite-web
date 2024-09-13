@@ -1,13 +1,45 @@
-## [vite](https://vitejs.dev/) + [React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/) Starter
+# Store + Login + Dashboard + (React, Mui, Vite, Axios, React Router)
 
-This setup includes:
-* [vite](https://vitejs.dev/)
-* [eslint](https://eslint.org/), [typescript-eslint](https://typescript-eslint.io/), [eslint-airbnb-config](https://github.com/airbnb/javascript), [prettier](https://prettier.io/)
-* [vitest](https://vitest.dev/), [jsdom](https://github.com/jsdom/jsdom), [@testing-library](https://testing-library.com/)
-* [react-router v6](https://reactrouter.com/en/main)
+Una aplicación web construida con React, Material UI, Vite, Axios y React Router.
 
-# References
+## **Descripción**
 
-* https://markus.oberlehner.net/blog/using-testing-library-jest-dom-with-vitest/
-* https://testing-library.com/docs/queries/about#priority
-* https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
+Tienda de abarrotes, para poder gestionar el stock, los proveedores y la vigencia de los productos.
+
+### **Tecnologías Utilizadas**
+
+* **Frontend:** React, Material UI, Vite
+* **Otros:** Axios, React Router, Node v18.18.0, NPM 9.8.1
+
+### **Instalación**
+
+1. **Clonar el repositorio:**
+
+   ```bash
+   git clone https://github.com/RResabala2015/store-react-mui-vite-web.git
+   cd store-react-mui-vite-web
+   ```
+
+2. **Instalar dependencias:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Iniciar servidor de desarrollo:**
+
+   ```bash
+   npm start
+   ```
+
+4. **Lintear el código:**
+
+   ```bash
+   npm run lint
+   ```
+
+5. **Testear el código:**
+
+   ```bash
+   npm run test
+   ```
