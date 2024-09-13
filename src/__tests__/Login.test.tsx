@@ -18,12 +18,14 @@ describe('Login Component', () => {
   test('You must allow the user to log in with the correct credentials.', async () => {
     render(<App />);
     window.sessionStorage.setItem('user-security', '');
+    const user = import.meta.env.VITE_APP_TEST_USER;
+    const pass = import.meta.env.VITE_APP_TEST_PASSWORD;
     fireEvent.change(screen.getByLabelText(/usuario/i), {
-      target: { value: 'rresabala' },
+      target: { value: user },
     });
 
     fireEvent.change(screen.getByLabelText(/clave/i), {
-      target: { value: 'anai2010' },
+      target: { value: pass },
     });
 
     fireEvent.click(screen.getByRole('button', { name: /ingresar/i }));
