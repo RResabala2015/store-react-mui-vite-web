@@ -9,7 +9,7 @@ Tienda de abarrotes, para poder gestionar el stock, los proveedores y la vigenci
 ### **Tecnologías Utilizadas**
 
 * **Frontend:** React, Material UI, Vite
-* **Otros:** Axios, React Router, Node v18.18.0, NPM 9.8.1
+* **Otros:** Axios, React Router, Node v22.12.0 LTS, NPM 10+
 
 ### **Instalación**
 
