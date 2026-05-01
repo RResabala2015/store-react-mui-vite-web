@@ -3,18 +3,12 @@ import { AuthContext } from './context/AuthContext';
 import { AppRouter } from './routes/AppRouter';
 import { AuthReducer } from './reducers/AuthReducer';
 
-function init(arg: any) {
-  const sessionUser: any = sessionStorage.getItem('user-security');
-  let user: unknown;
+function init(_arg: unknown): { loggedIn: boolean; [key: string]: unknown } {
+  const sessionUser = sessionStorage.getItem('user-security');
   if (!sessionUser) {
-    user = sessionUser;
-  } else {
-    user = JSON.parse(sessionUser);
+    return { loggedIn: false };
   }
-
-  sessionStorage.clear();
-
-  return user;
+  return JSON.parse(sessionUser) as { loggedIn: boolean; [key: string]: unknown };
 }
 
 export default function App() {

@@ -8,8 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import { LockOutlined as LockOutlinedIcon, VerifiedUser as VerifiedUserIcon } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -24,12 +23,12 @@ import CircularIndeterminate from '../../components/CircularIndeterminate';
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const [state, setState] = React.useReducer((s, a) => ({ ...s, ...a }), {
+  const [state, setState] = React.useReducer((s: Record<string, unknown>, a: Record<string, unknown>) => ({ ...s, ...a }), {
     loading: false,
     error: null,
   });
 
-  const { dispatchUser }: any = useContext(AuthContext);
+  const { dispatchUser } = useContext(AuthContext);
   const [auth, setAuth] = useState({ username: '', password: '' });
   const navigate = useNavigate();
 
@@ -56,9 +55,9 @@ export default function Login() {
             'user-security',
             JSON.stringify({ ...response.data, loggedIn: true })
           );
-          const accessToken = response?.data?.token;
+          const accessToken = (response?.data as unknown as Record<string, string>)?.token;
           const payloadDecoded = jwtDecode(accessToken);
-          dispatchUser({ type: 'login', payload: payloadDecoded });
+          dispatchUser?.({ type: 'login', payload: payloadDecoded });
           setState({ loading: false, error: null });
           // navigate("/dashboard");
         }
@@ -66,13 +65,14 @@ export default function Login() {
         setMessage('Verifique las alertas');
       }
     } catch (err) {
-      if (!err?.response) {
+      const e = err as { response?: { status?: number } };
+      if (!e?.response) {
         setMessage('No Server Response');
-      } else if (err.response?.status === 400) {
+      } else if (e.response?.status === 400) {
         setMessage('Missing Username or Password');
-      } else if (err.response?.status === 401) {
+      } else if (e.response?.status === 401) {
         setMessage('Unauthorized');
-        dispatchUser({ type: 'logout' });
+        dispatchUser?.({ type: 'logout' });
       } else {
         setMessage('Login Failed');
       }
@@ -81,7 +81,7 @@ export default function Login() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLFormElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setAuth({
       ...auth,
@@ -191,7 +191,7 @@ export default function Login() {
             >
               Ingresar
             </Button>
-            <Grid container alignItems="center" justify="center">
+            <Grid container alignItems="center" justifyContent="center">
               <Grid item xs="auto">
                 <Link href="/recovery" variant="body2">
                   ¿Olvidaste tu usuario y clave?

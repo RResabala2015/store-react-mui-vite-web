@@ -1,6 +1,6 @@
 export interface Action {
   type: string;
-  payload: any;
+  payload?: unknown;
 }
 
 const isAuthenticated = { loggedIn: false };
@@ -8,7 +8,7 @@ const isAuthenticated = { loggedIn: false };
 export function AuthReducer(state = isAuthenticated, action: Action) {
   switch (action.type) {
     case 'login':
-      return { ...action.payload, loggedIn: true };
+      return { ...(action.payload as Record<string, unknown>), loggedIn: true };
     case 'logout':
       return { loggedIn: false };
     default:
